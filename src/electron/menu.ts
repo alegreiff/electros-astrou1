@@ -1,37 +1,44 @@
 import { app, BrowserWindow, Menu } from "electron";
+import { isDev } from "./util.js";
 
 export function createMenu(mainWindow: BrowserWindow) {
 Menu.setApplicationMenu(Menu.buildFromTemplate([
+  
   {
-    label: ""
-  },
-  {
-    label: process.platform === "darwin" ? undefined : "Biko",
-    type: "submenu",
+    label: process.platform === 'darwin' ? undefined :  'App',
+    type: 'submenu',
     submenu: [
       {
-        label: "Biko"
-      },{
-        label: "Salir", 
+        label: 'Quit',
         click: app.quit,
-        accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q"
-      }
-    ]
-  },{
-    label: process.platform === "darwin" ? "Los gatos" : "Biko",
-    type: "separator",
-    submenu: [
+        accelerator: process.platform === 'darwin' ? 'Cmd+Q' : 'Alt+F4',
+
+      },
       {
-        label: "Pixie"
+        label: 'DevTools',
+        click: () => mainWindow.webContents.openDevTools(),
+        visible: isDev()
       }
     ]
   },
   {
-    label: "Otro menú",
-    type: "submenu",
+    label: 'View',
+    type: 'submenu',
     submenu: [
       {
-        label: "Suki"
+        label: 'CPU',
+        
+        
+      },
+      {
+        label: 'RAM',
+        
+        
+      },
+      {
+        label: 'STORAGE',
+        
+        
       }
     ]
   }
