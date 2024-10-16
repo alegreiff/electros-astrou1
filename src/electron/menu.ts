@@ -3,7 +3,10 @@ import { app, BrowserWindow, Menu } from "electron";
 export function createMenu(mainWindow: BrowserWindow) {
 Menu.setApplicationMenu(Menu.buildFromTemplate([
   {
-    label: process.platform === "darwin" ? "Los gatos" : "Biko",
+    label: ""
+  },
+  {
+    label: process.platform === "darwin" ? undefined : "Biko",
     type: "submenu",
     submenu: [
       {
@@ -11,6 +14,7 @@ Menu.setApplicationMenu(Menu.buildFromTemplate([
       },{
         label: "Salir", 
         click: app.quit,
+        accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q"
       }
     ]
   },{
@@ -18,12 +22,12 @@ Menu.setApplicationMenu(Menu.buildFromTemplate([
     type: "separator",
     submenu: [
       {
-        label: "Biko"
+        label: "Pixie"
       }
     ]
   },
   {
-    label: process.platform === "darwin" ? "Los gatos" : "Biko",
+    label: "Otro menú",
     type: "submenu",
     submenu: [
       {
