@@ -11,12 +11,13 @@ app.on("ready", () => {
     webPreferences: { nodeIntegration: true, contextIsolation: false },
     
   })
+  mainWindow.removeMenu();
   if(isDev()){ 
     mainWindow.loadURL("http://localhost:4321");
   } else {
     mainWindow.loadFile(path.join(app.getAppPath(), "/dist-astro/index.html"))
   }
 
-  createMenu(mainWindow);
+  //createMenu(mainWindow);
 })
 
