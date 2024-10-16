@@ -12,12 +12,14 @@ app.on("ready", () => {
     
   })
   mainWindow.removeMenu();
+  mainWindow.setMenuBarVisibility(false);
+  mainWindow.setMenu(null);
   if(isDev()){ 
     mainWindow.loadURL("http://localhost:4321");
   } else {
     mainWindow.loadFile(path.join(app.getAppPath(), "/dist-astro/index.html"))
   }
 
-  //createMenu(mainWindow);
+  createMenu(mainWindow);
 })
 
